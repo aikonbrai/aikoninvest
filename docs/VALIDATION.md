@@ -54,8 +54,9 @@ Ledger simulado com quantidade precisa, aportes, compras/vendas, taxas e câmbio
 - Repositório Git local inicializado, sem remoto, publicação, deploy ou conta conectada.
 - O workflow [.github/workflows/ci.yml](../.github/workflows/ci.yml) foi validado localmente: `npm run lint`, `npm run typecheck`, `npm test` (43 testes) e `npm run build` foram aprovados.
 - `npm audit --audit-level=high` terminou com código de saída zero: não há vulnerabilidades altas ou críticas reportadas.
+- O repositório privado `aikonbrai/aikoninvest` foi conectado e a execução remota inicial do GitHub Actions foi aprovada: [run 41159469092](https://github.com/aikonbrai/aikoninvest/actions/runs/41159469092). O job `validate` concluiu todas as etapas previstas.
 
 ### Limites e pendências
 - A auditoria ainda reporta 16 vulnerabilidades moderadas transitivas no conjunto de lint. Não foi aplicada correção automática, pois `npm audit fix` pode alterar a árvore de dependências e exige uma revisão separada.
-- Não há remoto GitHub configurado, primeiro commit, execução remota de Actions ou confirmação de disponibilidade do Dependency Review para um repositório privado.
+- O job `dependency-review` foi ignorado corretamente no push, pois só executa para pull requests. A disponibilidade dele em uma pull request privada permanece a confirmar.
 - O README documenta os passos manuais para criar o repositório privado, publicar o histórico e verificar os dois jobs. Nenhuma credencial, dado financeiro real, dependência, schema, migração ou configuração de deploy foi alterado.
