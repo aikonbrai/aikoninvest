@@ -60,3 +60,17 @@ Ledger simulado com quantidade precisa, aportes, compras/vendas, taxas e câmbio
 - A auditoria ainda reporta 16 vulnerabilidades moderadas transitivas no conjunto de lint. Não foi aplicada correção automática, pois `npm audit fix` pode alterar a árvore de dependências e exige uma revisão separada.
 - O job `dependency-review` foi ignorado corretamente no push, pois só executa para pull requests. A disponibilidade dele em uma pull request privada permanece a confirmar.
 - O README documenta os passos manuais para criar o repositório privado, publicar o histórico e verificar os dois jobs. Nenhuma credencial, dado financeiro real, dependência, schema, migração ou configuração de deploy foi alterado.
+
+## M1 — QA de navegador (cobertura parcial) — 30/10/2026
+
+### Executado
+- Servidor de desenvolvimento local respondeu HTTP 200 e a página carregou o exemplo fictício com rótulos `SIMULADO`, fonte, moeda e data das referências.
+- Em navegador, iniciar cenário vazio zerou patrimônio, aportes e resultado e exibiu a confirmação de rascunho local.
+- Um aporte fictício de R$ 1.000,00 atualizou patrimônio e aportes pelo mesmo valor, manteve o resultado nominal em R$ 0,00 e criou um evento no histórico.
+- Após recarregar, o aplicativo voltou ao exemplo fixo e a restauração explícita do rascunho recuperou o aporte, com revalidação e métricas preservadas.
+- Em 375 px e 1440 px, não houve overflow horizontal da página; a tabela de posições usa rolagem horizontal própria em tela estreita.
+- O rascunho fictício de QA foi removido do perfil de navegador integrado ao fim da verificação.
+
+### Cobertura pendente
+- Não foram exercitados no navegador compra/venda, conversão BRL/USD, limites de concentração, importação/exportação de JSON nem a indisponibilidade de localStorage.
+- A execução automatizada de browser usou mensagens esperadas diferentes das exibidas nas confirmações de registro e restauração; as evidências na árvore de acessibilidade confirmaram os dois fluxos. Isso não indica falha do aplicativo.
